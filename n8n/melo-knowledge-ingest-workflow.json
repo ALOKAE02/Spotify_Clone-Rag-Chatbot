@@ -1,0 +1,101 @@
+{
+  "name": "Melo – load knowledge (Spotify Clone)",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Load Melo's knowledge",
+        "formDescription": "melo_knowledge = n8n/melo-knowledge.md (app help + home page music). melo_tracks = n8n/melo-tracks-knowledge.md (the Spotify tracks dataset). Uploading replaces what that set currently holds.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Knowledge set",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [{ "option": "melo_knowledge" }, { "option": "melo_tracks" }]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Knowledge file",
+              "fieldType": "file",
+              "acceptFileTypes": ".md,.txt,.pdf",
+              "multipleFiles": false,
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7a1d2b3c-2b22-4c7f-8b02-000000000001",
+      "name": "Upload knowledge file",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [0, 300],
+      "webhookId": "7a1d2b3c-2b22-4c7f-8b02-0000000000f1"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "memoryKey": "={{ $json['Knowledge set'] }}",
+        "clearStore": true
+      },
+      "id": "7a1d2b3c-2b22-4c7f-8b02-000000000002",
+      "name": "Melo knowledge (vector store)",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.1,
+      "position": [260, 300]
+    },
+    {
+      "parameters": {
+        "model": "text-embedding-3-small",
+        "options": {}
+      },
+      "id": "7a1d2b3c-2b22-4c7f-8b02-000000000003",
+      "name": "Embeddings",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [160, 520]
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "options": {}
+      },
+      "id": "7a1d2b3c-2b22-4c7f-8b02-000000000004",
+      "name": "Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [380, 520]
+    },
+    {
+      "parameters": {
+        "chunkSize": 800,
+        "chunkOverlap": 100,
+        "options": {}
+      },
+      "id": "7a1d2b3c-2b22-4c7f-8b02-000000000005",
+      "name": "Recursive Character Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [480, 720]
+    }
+  ],
+  "connections": {
+    "Upload knowledge file": {
+      "main": [[{ "node": "Melo knowledge (vector store)", "type": "main", "index": 0 }]]
+    },
+    "Embeddings": {
+      "ai_embedding": [[{ "node": "Melo knowledge (vector store)", "type": "ai_embedding", "index": 0 }]]
+    },
+    "Default Data Loader": {
+      "ai_document": [[{ "node": "Melo knowledge (vector store)", "type": "ai_document", "index": 0 }]]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [[{ "node": "Default Data Loader", "type": "ai_textSplitter", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
