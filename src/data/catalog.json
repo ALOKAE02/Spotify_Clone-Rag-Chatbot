@@ -1,0 +1,341 @@
+{
+  "sources": {
+    "artists": "Deezer API",
+    "songs": "iTunes Search API",
+    "albums": "iTunes Search API"
+  },
+  "generatedAt": "2026-11-15T14:02:00.243Z",
+  "artists": [
+    {
+      "deezerId": 3830821,
+      "name": "Arijit Singh",
+      "image": "https://cdn-images.dzcdn.net/images/artist/ac5350cff290edd5b69fa584b8b1bd4f/500x500-000000-80-0-0.jpg"
+    },
+    {
+      "deezerId": 290619,
+      "name": "Pritam",
+      "image": "https://cdn-images.dzcdn.net/images/artist/d4914ccd414067cd5e2c108867079a85/500x500-000000-80-0-0.jpg"
+    },
+    {
+      "deezerId": 491,
+      "name": "A.R. Rahman",
+      "image": "https://cdn-images.dzcdn.net/images/artist/bd34315ef977a62a9e28c1ab19bb8ac4/500x500-000000-80-0-0.jpg"
+    },
+    {
+      "deezerId": 98371,
+      "name": "Shreya Ghoshal",
+      "image": "https://cdn-images.dzcdn.net/images/artist/3bb832d37d10ff2affcfa9afdc7c68a0/500x500-000000-80-0-0.jpg"
+    },
+    {
+      "deezerId": 405736,
+      "name": "Atif Aslam",
+      "image": "https://cdn-images.dzcdn.net/images/artist/0ea90444148fff9c11d77f06a344724e/500x500-000000-80-0-0.jpg"
+    },
+    {
+      "deezerId": 7760,
+      "name": "Vishal-Shekhar",
+      "image": "https://cdn-images.dzcdn.net/images/artist/5871137ebfd9723ea757b8380fe404c5/500x500-000000-80-0-0.jpg"
+    },
+    {
+      "deezerId": 1452924,
+      "name": "Sachin-Jigar",
+      "image": "https://cdn-images.dzcdn.net/images/artist/d812840574d5c6177ef5480a4ba24d59/500x500-000000-80-0-0.jpg"
+    },
+    {
+      "deezerId": 1516162,
+      "name": "Anirudh Ravichander",
+      "image": "https://cdn-images.dzcdn.net/images/artist/9da0a547b39e99bc35c6a9724aef91bf/500x500-000000-80-0-0.jpg"
+    },
+    {
+      "deezerId": 1199677,
+      "name": "Diljit Dosanjh",
+      "image": "https://cdn-images.dzcdn.net/images/artist/79b85e695e0ca6529e56bf3b628e92bd/500x500-000000-80-0-0.jpg"
+    },
+    {
+      "deezerId": 76708242,
+      "name": "AP Dhillon",
+      "image": "https://cdn-images.dzcdn.net/images/artist/52594ac9fa763dc163ed13d21cb130ec/500x500-000000-80-0-0.jpg"
+    },
+    {
+      "deezerId": 1093616,
+      "name": "Badshah",
+      "image": "https://cdn-images.dzcdn.net/images/artist/5b90b89299a7d42f81d79afa263a85d2/500x500-000000-80-0-0.jpg"
+    },
+    {
+      "deezerId": 8419888,
+      "name": "Jubin Nautiyal",
+      "image": "https://cdn-images.dzcdn.net/images/artist/9031b483049b5551abcb11529873b4f6/500x500-000000-80-0-0.jpg"
+    }
+  ],
+  "songs": [
+    {
+      "itunesId": 1635014240,
+      "title": "Kesariya",
+      "artists": [
+        "Pritam",
+        "Arijit Singh",
+        "Amitabh Bhattacharya"
+      ],
+      "album": "Kesariya",
+      "albumItunesId": 1635013814,
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/600x600bb.jpg",
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/38/4c/5c/384c5c8f-3ff8-e457-b2f7-3158ce108649/mzaf_12389299033886433185.plus.aac.p.m4a",
+      "durationMs": 268165,
+      "releaseDate": "2022-07-17T12:00:00Z"
+    },
+    {
+      "itunesId": 1653219849,
+      "title": "Apna Bana Le",
+      "artists": [
+        "Arijit Singh",
+        "Sachin-Jigar",
+        "Amitabh Bhattacharya"
+      ],
+      "album": "Apna Bana Le",
+      "albumItunesId": 1653219847,
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/2e/0b/c0/2e0bc070-112f-a827-6ad8-6bc64f7caaff/840214460180.png/600x600bb.jpg",
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/eb/27/61/eb2761c7-d606-0912-dff0-2dc6b69974bd/mzaf_2023722930851223219.plus.aac.p.m4a",
+      "durationMs": 261702,
+      "releaseDate": "2022-11-05T12:00:00Z"
+    },
+    {
+      "itunesId": 1702461667,
+      "title": "Chaleya",
+      "artists": [
+        "Anirudh Ravichander",
+        "Arijit Singh",
+        "Shilpa Rao",
+        "Kumaar"
+      ],
+      "album": "Chaleya",
+      "albumItunesId": 1702461666,
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/1e/ff/32/1eff3216-190d-6fd9-8f68-acbba846e6ee/8903431956026_cover.jpg/600x600bb.jpg",
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/55/fb/9c/55fb9c31-320a-5dba-0a3f-5e69552085a7/mzaf_13508224660474474886.plus.aac.p.m4a",
+      "durationMs": 200374,
+      "releaseDate": "2023-08-14T12:00:00Z"
+    },
+    {
+      "itunesId": 1727144339,
+      "title": "Satranga",
+      "artists": [
+        "Shreyas Puranik",
+        "Arijit Singh",
+        "Siddharth-Garima"
+      ],
+      "album": "ANIMAL (Deluxe Edition Album)",
+      "albumItunesId": 1727144163,
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/fc/50/b3/fc50b3ca-c94b-58eb-a10c-80287d82eba3/8903431981196_cover.jpg/600x600bb.jpg",
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/7c/b3/f6/7cb3f637-2ae1-ccd6-dcfb-2d15fc7e955e/mzaf_5970625720654848890.plus.aac.p.m4a",
+      "durationMs": 271169,
+      "releaseDate": "2023-10-27T12:00:00Z"
+    },
+    {
+      "itunesId": 1690466656,
+      "title": "Heeriye",
+      "artists": [
+        "Jasleen Royal",
+        "Arijit Singh"
+      ],
+      "album": "Heeriye",
+      "albumItunesId": 1690466350,
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f0/8c/2a/f08c2aeb-3903-8738-d0a5-8c2e4547eed7/5054197711039.jpg/600x600bb.jpg",
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/14/9b/ac/149bac62-12f1-2f55-a742-f38429b94c83/mzaf_17225240189976438593.plus.aac.p.m4a",
+      "durationMs": 194857,
+      "releaseDate": "2023-06-15T12:00:00Z"
+    },
+    {
+      "itunesId": 1649039974,
+      "title": "Maan Meri Jaan",
+      "artists": [
+        "King"
+      ],
+      "album": "Champagne Talk",
+      "albumItunesId": 1649039960,
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/90/9d/aa/909daa9a-3a47-9314-2855-39f5a157f1e3/5054197407734.jpg/600x600bb.jpg",
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/49/c8/c0/49c8c0eb-6a72-d639-02d2-d55fa0034b89/mzaf_6556689839136809010.plus.aac.p.m4a",
+      "durationMs": 194654,
+      "releaseDate": "2022-10-12T12:00:00Z"
+    },
+    {
+      "itunesId": 1580955743,
+      "title": "Raataan Lambiyan",
+      "artists": [
+        "Tanishk Bagchi",
+        "Jubin Nautiyal",
+        "Asees Kaur"
+      ],
+      "album": "Shershaah (Original Motion Picture Soundtrack)",
+      "albumItunesId": 1580955738,
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/61/65/ae/6165aee9-8bb9-0bd4-02b0-5d0f1e6257a3/886449510238.jpg/600x600bb.jpg",
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/99/0c/38/990c381b-0530-8c0d-87a9-18b050b97f0a/mzaf_10418866714500530894.plus.aac.p.m4a",
+      "durationMs": 230292,
+      "releaseDate": "2021-09-01T12:00:00Z"
+    },
+    {
+      "itunesId": 1588418743,
+      "title": "Excuses",
+      "artists": [
+        "AP Dhillon",
+        "Gurinder Gill",
+        "Intense"
+      ],
+      "album": "Excuses",
+      "albumItunesId": 1588418741,
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/47/47/ac/4747ac85-1658-64ae-bc82-220a4d6213d5/859747478890_cover.jpg/600x600bb.jpg",
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e8/84/c8/e884c82f-7136-54d8-6754-6b45c6968f29/mzaf_11726474689882106813.plus.aac.p.m4a",
+      "durationMs": 176233,
+      "releaseDate": "2020-07-23T12:00:00Z"
+    },
+    {
+      "itunesId": 1523521607,
+      "title": "Born to Shine",
+      "artists": [
+        "Diljit Dosanjh"
+      ],
+      "album": "G.O.A.T.",
+      "albumItunesId": 1523520901,
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d2/89/ac/d289ac98-749e-3822-6b6e-b06aa4815715/859740651597_cover.jpg/600x600bb.jpg",
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/38/12/41/38124195-4bd9-1fc7-fe40-f793ee38d163/mzaf_14837378210736189248.plus.aac.p.m4a",
+      "durationMs": 213333,
+      "releaseDate": "2020-07-30T12:00:00Z"
+    },
+    {
+      "itunesId": 1073359419,
+      "title": "Tum Hi Ho",
+      "artists": [
+        "Mithoon",
+        "Arijit Singh"
+      ],
+      "album": "Aashiqui 2 (Original Motion Picture Soundtrack)",
+      "albumItunesId": 1073359412,
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/600x600bb.jpg",
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/3a/8c/9b/3a8c9b0b-2def-750a-f615-1555bf941edf/mzaf_17229496441442805917.plus.aac.p.m4a",
+      "durationMs": 261974,
+      "releaseDate": "2013-03-16T07:00:00Z"
+    },
+    {
+      "itunesId": 1499386265,
+      "title": "Blinding Lights",
+      "artists": [
+        "The Weeknd"
+      ],
+      "album": "After Hours",
+      "albumItunesId": 1499385848,
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2b/b9/fe/2bb9fef5-d7f3-8345-25a9-db0e79fde4e4/20UMGIM11048.rgb.jpg/600x600bb.jpg",
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/0c/c5/03/0cc503b5-9299-b207-a13c-ba5358733c56/mzaf_18217607061023109918.plus.aac.p.m4a",
+      "durationMs": 200046,
+      "releaseDate": "2019-11-29T08:00:00Z"
+    },
+    {
+      "itunesId": 1193701392,
+      "title": "Shape of You",
+      "artists": [
+        "Ed Sheeran"
+      ],
+      "album": "÷ (Deluxe)",
+      "albumItunesId": 1193701079,
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/600x600bb.jpg",
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/44/c7/4f/44c74f0d-72dc-6143-d4d0-ba14d661ca0d/mzaf_9566898362556366703.plus.aac.p.m4a",
+      "durationMs": 233713,
+      "releaseDate": "2017-01-06T08:00:00Z"
+    }
+  ],
+  "albums": [
+    {
+      "itunesId": 1648663561,
+      "title": "Brahmastra (Original Motion Picture Soundtrack)",
+      "artist": "Pritam & Amitabh Bhattacharya",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/01/ef/35/01ef35ac-c046-656c-638f-928c4af51c8d/196589554871.jpg/600x600bb.jpg",
+      "trackCount": 9,
+      "releaseDate": "2022-10-06T07:00:00Z"
+    },
+    {
+      "itunesId": 1123241840,
+      "title": "Rockstar (Original Motion Picture Soundtrack)",
+      "artist": "A.R. Rahman",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/56/ac/41/56ac41f7-99f3-3eae-3b07-443167292c4e/8902894697408_cover.jpg/600x600bb.jpg",
+      "trackCount": 14,
+      "releaseDate": "2011-09-30T07:00:00Z"
+    },
+    {
+      "itunesId": 1705952061,
+      "title": "Jawan (Original Motion Picture Soundtrack)",
+      "artist": "Anirudh Ravichander, Irshad Kamil, Kumaar, Raja Kumari & Mohamed El Maghribi",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/bb/f4/f5/bbf4f511-3c12-c25e-a475-b6d06faa8c13/8902894362047_cover.jpg/600x600bb.jpg",
+      "trackCount": 7,
+      "releaseDate": "2023-09-05T07:00:00Z"
+    },
+    {
+      "itunesId": 1596475085,
+      "title": "Hidden Gems",
+      "artist": "AP Dhillon",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/24/77/cb/2477cbbb-563f-5ef1-9b05-299a4f34e5f1/859751714458_cover.jpg/600x600bb.jpg",
+      "trackCount": 6,
+      "releaseDate": "2021-11-21T08:00:00Z"
+    },
+    {
+      "itunesId": 1581006360,
+      "title": "MoonChild Era",
+      "artist": "Diljit Dosanjh",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8a/89/e4/8a89e445-d2c6-f8ac-a828-27818b0c1afe/859749638209_cover.jpg/600x600bb.jpg",
+      "trackCount": 9,
+      "releaseDate": "2021-08-22T07:00:00Z"
+    },
+    {
+      "itunesId": 1169015635,
+      "title": "Ae Dil Hai Mushkil (Original Motion Picture Soundtrack)",
+      "artist": "Pritam",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bc/6e/4d/bc6e4d0c-adec-b431-7b60-16f5689f9664/886446201597.jpg/600x600bb.jpg",
+      "trackCount": 6,
+      "releaseDate": "2016-10-26T07:00:00Z"
+    },
+    {
+      "itunesId": 1070912669,
+      "title": "Yeh Jawaani Hai Deewani (Original Motion Picture Soundtrack)",
+      "artist": "Pritam",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/62/d6/74/62d67432-0670-631f-db6a-d4bac3adae4b/8902894353328_cover.jpg/600x600bb.jpg",
+      "trackCount": 9,
+      "releaseDate": "2013-03-30T07:00:00Z"
+    },
+    {
+      "itunesId": 1522841826,
+      "title": "Dil Bechara (Original Motion Picture Soundtrack)",
+      "artist": "A.R. Rahman",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/0e/21/78/0e217886-b262-3ed2-ae72-c2c9fbf35e85/886448629870.jpg/600x600bb.jpg",
+      "trackCount": 9,
+      "releaseDate": "2020-07-10T07:00:00Z"
+    },
+    {
+      "itunesId": 1499385848,
+      "title": "After Hours",
+      "artist": "The Weeknd",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2b/b9/fe/2bb9fef5-d7f3-8345-25a9-db0e79fde4e4/20UMGIM11048.rgb.jpg/600x600bb.jpg",
+      "trackCount": 14,
+      "releaseDate": "2020-03-20T07:00:00Z"
+    },
+    {
+      "itunesId": 1649434996,
+      "title": "Midnights",
+      "artist": "Taylor Swift",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/67/b5/01/67b501d5-362e-797e-7dbd-942b9e273084/22UM1IM24801.rgb.jpg/600x600bb.jpg",
+      "trackCount": 14,
+      "releaseDate": "2022-10-21T07:00:00Z"
+    },
+    {
+      "itunesId": 1450333975,
+      "title": "thank u, next",
+      "artist": "Ariana Grande",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bb/69/07/bb6907de-8ad4-970b-3311-121320e1bf9c/19UMGIM03691.rgb.jpg/600x600bb.jpg",
+      "trackCount": 12,
+      "releaseDate": "2019-02-08T08:00:00Z"
+    },
+    {
+      "itunesId": 1644021013,
+      "title": "BORN PINK",
+      "artist": "BLACKPINK",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/3b/ae/06/3bae0630-b358-1675-45bf-404087ac2624/BLACKPINK_BORN_PINK.jpg/600x600bb.jpg",
+      "trackCount": 9,
+      "releaseDate": "2022-09-16T07:00:00Z"
+    }
+  ]
+}

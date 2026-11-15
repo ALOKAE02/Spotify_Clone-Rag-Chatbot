@@ -1,0 +1,288 @@
+{
+  "name": "Melo – chat (Spotify Clone)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "melo-chat",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "5f0c3c1e-1a11-4b6e-9a01-000000000001",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        300
+      ],
+      "webhookId": "3c9d6f2e-7b41-4a8e-9f05-6d2b1e8c4a77"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "5f0c3c1e-1a11-4b6e-9a01-0000000000c1",
+              "leftValue": "={{ $json.body.action }}",
+              "rightValue": "open",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "5f0c3c1e-1a11-4b6e-9a01-000000000002",
+      "name": "Melo button clicked?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=Hey{{ $json.body.user && $json.body.user.firstName ? ' ' + $json.body.user.firstName : '' }}! I’m Melo, now running on n8n. Ask me for songs that fit a mood, about an artist, or what’s trending.",
+        "options": {}
+      },
+      "id": "5f0c3c1e-1a11-4b6e-9a01-000000000003",
+      "name": "Send greeting",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        480,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.message }}",
+        "options": {
+          "systemMessage": "=You are Melo, the music assistant inside Spotify Clone, an educational web app that imitates a music streaming player. It is not affiliated with Spotify, and you can't see anyone's Spotify account.\n\nYour tools\n- track_finder: about 2,900 popular tracks across 114 genres from a public Spotify tracks dataset. Each entry lists the song, artists, album, genres, popularity (0-100 in the dataset), length, tempo, key, how it feels (energy, happiness, danceability, acoustic, instrumental), what it's good for (studying, workouts, parties, sleep and so on) and whether it's explicit. Use it for recommendations, moods, activities, genres, \"songs like X\", and questions about a song's tempo, feel or explicit content.\n- melo_knowledge: how the app works (signing up, logging in, features, what's coming soon) and the songs, artists and albums shown on the app's home page.\n\nHow to work\n1. Search before answering any question about music or the app. Don't answer music questions from memory when a search could check it.\n2. For recommendations, turn the request into a descriptive search: genre or language, mood, energy, activity, tempo. Examples: \"calm acoustic instrumental studying focus\", \"indian pop-film romantic\", \"high energy danceable workout running\". For \"songs like X\", search for X first, then search again using its genre and feel.\n3. If the results don't fit, search once more with different words before giving up.\n4. Recommend only tracks that appear in your search results, with song and artist names exactly as written there. Never invent songs, albums or numbers. If nothing fits, say so and offer the closest matches.\n5. Give each pick a short reason taken from the data, for example \"upbeat and very danceable, 128 BPM\".\n6. Popularity is a score from the dataset snapshot, not today's charts. Don't call anything \"currently trending\" because of it; for what's trending in the app, use melo_knowledge.\n\nHow to answer\n- Short and friendly: 2 to 5 sentences. For recommendations, up to 6 lines in the form \"• Song – Artist: reason\".\n- Plain text only: no markdown headings, bold, tables or links.\n- Never write out song lyrics, not even one line or a paraphrase of lines. You may describe a song's mood or themes.\n- Mark explicit songs with \"(explicit)\" when the data says so.\n- The app can't play music or create playlists yet. If asked, say it's coming soon and suggest what to queue up.\n- If a question isn't about music or the app, answer briefly and steer back to music.\n\nAbout this listener\n- First name: {{ $json.body.user.firstName || 'unknown' }}\n- Logged in: {{ $json.body.user.loggedIn ? 'yes' : 'no' }}\n- Current page in the app: {{ $json.body.page }}"
+        }
+      },
+      "id": "5f0c3c1e-1a11-4b6e-9a01-000000000004",
+      "name": "Melo agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        480,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-opus-5-5",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "5f0c3c1e-1a11-4b6e-9a01-000000000005",
+      "name": "Anthropic Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        360,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.body.sessionId }}",
+        "contextWindowLength": 10
+      },
+      "id": "5f0c3c1e-1a11-4b6e-9a01-000000000006",
+      "name": "Simple Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        520,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolName": "melo_knowledge",
+        "toolDescription": "Facts about the Spotify Clone app and the music in its catalogue: songs, artists, albums, release years, moods, radio stations, charts, and how the app works (sign up, log in, features). Search it before answering questions about music or the app.",
+        "memoryKey": "melo_knowledge",
+        "topK": 6
+      },
+      "id": "5f0c3c1e-1a11-4b6e-9a01-000000000007",
+      "name": "Melo knowledge (vector store)",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.1,
+      "position": [
+        700,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "model": "text-embedding-3-small",
+        "options": {}
+      },
+      "id": "5f0c3c1e-1a11-4b6e-9a01-000000000008",
+      "name": "Embeddings",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        800,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.output }}",
+        "options": {}
+      },
+      "id": "5f0c3c1e-1a11-4b6e-9a01-000000000009",
+      "name": "Send answer",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        860,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolName": "track_finder",
+        "toolDescription": "Search about 2,900 popular tracks across 114 genres (public Spotify tracks dataset). Each entry has song, artists, album, genres, popularity, length, tempo, key, feel (energy, happiness, danceability, acoustic, instrumental), what it is good for (studying, workouts, parties, sleep...) and explicit flag. Search with descriptive words: genre, language, mood, activity, tempo.",
+        "memoryKey": "melo_tracks",
+        "topK": 8
+      },
+      "id": "5f0c3c1e-1a11-4b6e-9a01-000000000010",
+      "name": "Track finder (vector store)",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.1,
+      "position": [
+        900,
+        640
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Melo button clicked?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Melo button clicked?": {
+      "main": [
+        [
+          {
+            "node": "Send greeting",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Melo agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Melo agent": {
+      "main": [
+        [
+          {
+            "node": "Send answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Melo agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Melo agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Melo knowledge (vector store)": {
+      "ai_tool": [
+        [
+          {
+            "node": "Melo agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Melo knowledge (vector store)",
+            "type": "ai_embedding",
+            "index": 0
+          },
+          {
+            "node": "Track finder (vector store)",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Track finder (vector store)": {
+      "ai_tool": [
+        [
+          {
+            "node": "Melo agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
