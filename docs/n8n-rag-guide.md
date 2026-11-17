@@ -94,33 +94,57 @@ After editing `.env.local`, restart `npm run dev`. The terminal prints
 > that. For a permanent knowledge base, use the **Pinecone**, **Supabase** or **Qdrant** vector store nodes instead
 > (same wiring, in both workflows).
 
-## 4b. Add the Spotify tracks dataset (track_finder)
+## 4b. (Retired) the small tracks dataset
 
-The Kaggle-style `spotify-tracks-dataset.csv` (114,000 rows, 114 genres, about 20 MB) is too big to upload and
-embed as-is: n8n Cloud limits upload size, and the Simple Vector Store keeps everything in memory. So convert it
-first into a compact file of the most useful tracks:
+Melo used to search a 2,900-song vector store called `track_finder`, built from the first tracks dataset with
+`npm run tracks`. It was removed: all song retrieval now comes from the big SQL database in section 4c.
+The script (`scripts/build-tracks-knowledge.mjs`) is still in the repo if you want a vector store again.
+
+## 4c. Add the big songs dataset (550,000 songs) as a SQL database (songs_db)
+
+`songs.csv` (857 MB, mostly lyrics) and `artists.csv` are too big for a vector store, and lyrics are copyrighted,
+so Melo never stores them. Instead, every song and artist goes into a free Supabase database *without lyrics*, and
+the agent queries it with SQL. SQL handles everything about songs, moods included (energy, valence and tempo filters),
+so there is no separate song vector store.
+
+**1. Convert the CSVs** (about 1.5 minutes):
 
 ```bash
-npm run tracks -- "C:\path\to\spotify-tracks-dataset.csv"
+npm run songs-db -- "C:path	osongs.csv" "C:path	oartists.csv"
 ```
 
-This writes `n8n/melo-tracks-knowledge.md` (about 2,900 tracks, ~650 KB): the 30 most popular songs of every genre
-plus the app's own artists, one per line, with audio features turned into words, e.g.
-`… | feel: calm, melancholic, acoustic, instrumental | good for: studying, focus | explicit: no`.
-Change the amount with `--per-genre 50` (more tracks means a bigger upload and more embedding calls).
+This writes `data/songs_part1.csv` ... `songs_part4.csv` (about 40 MB each) and `data/artists_clean.csv`. The `data/` folder is git-ignored.
+Each song also gets up to 3 theme tags (love, heartbreak, party ...) detected from its lyrics; the lyrics text itself is discarded.
 
-Then load it:
+**2. Create the database.** At supabase.com create a free project and save the database password. Open
+**SQL Editor → New query**, paste `n8n/songs-db-setup.sql`, **change the `melo_reader` password on the `create role` line**, and Run.
+It creates the `songs` and `artists` tables, a few indexes, turns on row-level security (so Supabase's public web API sees nothing),
+and creates a **read-only** login `melo_reader` with a 5-second query limit.
 
-1. Open the loader workflow, click **Execute workflow**.
-2. In the form, choose **Knowledge set → melo_tracks** and upload `n8n/melo-tracks-knowledge.md`.
-   (Choose **melo_knowledge** when uploading `n8n/melo-knowledge.md`. Each set is replaced only by its own uploads.)
+**3. Import the data.** In **Table Editor**, open `songs` → **Insert → Import data from CSV**, and import
+`songs_part1.csv`, then 2, 3 and 4 (check "first row is the header"). Then import `artists_clean.csv` into `artists`.
+If the importer rejects a file, use the command line instead (needs the free `psql` tool; connection string from
+**Project Settings → Database → Connection string**, the "Session pooler" one, using the `postgres` user):
 
-If you built the loader by hand, add a **Dropdown** form field "Knowledge set" with options `melo_knowledge` and
-`melo_tracks`, and set the vector store's Memory Key to the expression `{{ $json['Knowledge set'] }}`.
+```bash
+psql "YOUR-CONNECTION-STRING" -c "copy songs from 'data/songs_part1.csv' csv header"
+```
 
-> Want the agent to filter all 114,000 rows exactly (e.g. "tempo above 140 and not explicit")? Import the CSV into
-> a database such as Supabase/Postgres and give the agent a **Postgres** tool that runs read-only SQL. That's a
-> bigger setup; the vector store above covers recommendations and mood searches well.
+(repeat for parts 2-4, and `copy artists from 'data/artists_clean.csv' csv header`).
+Check it worked by running `select count(*) from songs;` in the SQL Editor: it should say 550622.
+
+**4. Connect n8n.** Create a **Postgres** credential: Host, Port and Database from the Session pooler connection string,
+**User `melo_reader.YOUR-PROJECT-REF`** (the pooler needs the project ref after a dot), the password you chose, SSL on.
+Then under the AI Agent's **Tool** connector click **+**, add **Postgres Tool** and set:
+- Rename the node to `songs_db`
+- Credential: the one you just made; Operation: **Execute Query**
+- Query: click **Expression** and paste `{{ $fromAI('sql_query', 'One read-only SELECT statement with LIMIT 10 or less', 'string') }}`
+- Description: `SQL over all 550,000 songs and 71,000 artists. Use it for exact filters, rankings and counts.`
+
+**5. Update the System Message** with the new contents of `n8n/melo-system-prompt.md` (it now describes `songs_db`, its columns,
+and when to use each tool; keep the three `$json.body` lines at the end), save, and **Publish** again.
+
+**Test:** ask Melo "top 5 rock songs of 2016" (expect `songs_db` to run) and "something chill for studying" (expect `songs_db` again, with energy and acousticness filters).
 
 ## 5. Build the chat workflow
 
@@ -161,9 +185,7 @@ workflow, or import the file and delete the old one (two workflows can't share a
    - **Tool** → **Simple Vector Store** with Operation **Retrieve Documents (As Tool for AI Agent)**:
      name `melo_knowledge`, a description like "Facts about the Spotify Clone app and its music catalogue…",
      Memory Key `melo_knowledge` (the same key the loader used), Limit `6`. Attach the **same embeddings** node.
-   - **Tool** → a second **Simple Vector Store** (Retrieve Documents as Tool): name `track_finder`, description
-     "Search about 2,900 popular tracks across 114 genres… search with genre, language, mood, activity, tempo",
-     Memory Key `melo_tracks`, Limit `8`, same embeddings node.
+   - **Tool** → **Postgres Tool** named `songs_db` (see section 4c).
 6. After the agent, add **Respond to Webhook**: Respond With **Text**, body `{{ $json.output }}`.
 
 ## 6. Test with the test URL

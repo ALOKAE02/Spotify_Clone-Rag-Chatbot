@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "catalog": "node scripts/build-catalog.mjs",
     "knowledge": "node scripts/build-knowledge.mjs",
-    "tracks": "node scripts/build-tracks-knowledge.mjs"
+    "tracks": "node scripts/build-tracks-knowledge.mjs",
+    "songs-db": "node scripts/build-songs-db.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.8.0",

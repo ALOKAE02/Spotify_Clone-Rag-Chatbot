@@ -4,14 +4,14 @@
     {
       "parameters": {
         "formTitle": "Load Melo's knowledge",
-        "formDescription": "melo_knowledge = n8n/melo-knowledge.md (app help + home page music). melo_tracks = n8n/melo-tracks-knowledge.md (the Spotify tracks dataset). Uploading replaces what that set currently holds.",
+        "formDescription": "Upload n8n/melo-knowledge.md (app help + home page music). Uploading replaces what Melo currently knows about the app.",
         "formFields": {
           "values": [
             {
               "fieldLabel": "Knowledge set",
               "fieldType": "dropdown",
               "fieldOptions": {
-                "values": [{ "option": "melo_knowledge" }, { "option": "melo_tracks" }]
+                "values": [{ "option": "melo_knowledge" }]
               },
               "requiredField": true
             },
